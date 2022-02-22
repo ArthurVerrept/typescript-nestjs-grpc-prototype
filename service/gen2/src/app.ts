@@ -8,3 +8,7 @@ export interface NumberArray {
 export interface SumOfNumberArray {
   sum: number;
 }
+
+export interface AuthUrl {
+  url: string;
+}

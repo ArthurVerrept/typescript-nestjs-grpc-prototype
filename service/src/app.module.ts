@@ -3,17 +3,19 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { JwtModule } from '@nestjs/jwt'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
+import { GoogleAuthModule } from './google-auth/google-auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     JwtModule.registerAsync({
-    imports: [ConfigModule],
-    inject: [ConfigService],
-    useFactory: async (configService: ConfigService) => ({
-      secret: configService.get('JWT_SECRET')
-    })
-  })],
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get('JWT_SECRET')
+      })
+    }),
+    GoogleAuthModule],
   controllers: [AppController],
   providers: [AppService]
 })

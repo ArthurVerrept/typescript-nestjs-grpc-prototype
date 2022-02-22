@@ -1,9 +1,12 @@
 syntax = "proto3";
 
+import "google/protobuf/empty.proto";
 package math;
 
 service MathService {
     rpc Accumulate (NumberArray) returns (SumOfNumberArray) {}
+    // https://stackoverflow.com/questions/28876725/can-protobuf-service-method-return-primitive-type
+    rpc GenerateAuthUrl (google.protobuf.Empty) returns (AuthUrl) {}
 }
 
 message NumberArray {
@@ -14,3 +17,6 @@ message SumOfNumberArray {
     double sum = 1;
 }
 
+message AuthUrl {
+    string url = 1;
+}

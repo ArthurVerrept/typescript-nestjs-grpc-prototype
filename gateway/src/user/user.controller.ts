@@ -28,4 +28,9 @@ export class UserController implements OnModuleInit  {
     add(@Body() data: NumberArray, @Meta() metadata: Metadata) {
         return this.mathService.accumulate(data, metadata)
     }
+
+    @Post('get-authorization-url')
+    async generateAuthUrl() {
+         return this.mathService.generateAuthUrl({})
+    }
 }
