@@ -1,0 +1,32 @@
+import { Module } from '@nestjs/common'
+import { UserController } from './user.controller'
+import { ConfigModule, ConfigService } from '@nestjs/config'
+import { JwtModule } from '@nestjs/jwt'
+import { UserService } from './user.service'
+import { ClientsModule, Transport } from '@nestjs/microservices'
+import { join } from 'path'
+
+@Module({
+  imports: [
+    ClientsModule.register([
+      {
+        name: 'math',
+        transport: Transport.GRPC,
+        options: {
+          package: 'math',
+          protoPath: join(__dirname, '../app.proto')
+        }
+      }
+    ]),
+    ConfigModule,
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get('JWT_SECRET')
+      })
+    })],
+  controllers: [UserController],
+  providers: [UserService]
+})
+export class UserModule {}
