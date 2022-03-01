@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package math2;
+
+service MathServiceTwo {
+    rpc Accumulate (NumberArray2) returns (SumOfNumberArray2) {}
+}
+
+message NumberArray2 {
+    repeated double data2 = 1;
+}
+
+message SumOfNumberArray2 {
+    double sum2 = 1;
+}
+
