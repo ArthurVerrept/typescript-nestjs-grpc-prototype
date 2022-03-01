@@ -8,7 +8,7 @@ This prototype is my best implementation of gRPC for typescript and nestjs.
 
 The proto-npm package creates an npm package which has all the generated code exported to be used in typescript. I created a script which makes an index file to export each service and it's definitions individually along with creating a path to be used on the imports with nestjs.
 
-To regenerate/ alter the package, add new protos (if any) to the src file and run:
+To regenerate/ alter the package, add new protos (if any) to the src/protos file and run:
 ```bash
 $ npm run gen
 ```
