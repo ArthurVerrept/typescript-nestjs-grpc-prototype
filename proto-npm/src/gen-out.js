@@ -14,12 +14,27 @@ async function main() {
 
         for await (const dirent of dir) {
             if(dirent.name.includes('.proto')){
+                let protoPackageName = ''
+                // look through proto files
+                const data = fs.readFileSync(`./src/protos/${dirent.name}`, {encoding:'utf8', flag:'r'})
+                
+                if(data.includes('package')){
+                    const str = data.toString()
+                    const secondColon = str.indexOf(';') + 1
+
+                    protoPackageName = str.substring(
+                        str.indexOf("package ") + 8, 
+                        str.indexOf(";", secondColon)
+                    ) 
+                }
+
+
                 const serviceName = dirent.name.split('.')[0]
                 const exportName = serviceName.charAt(0).toUpperCase() + serviceName.slice(1)
-
                 const content = `
 // @ts-ignore 
 export * from './protos/${serviceName}'
+export const ${exportName}Name = '${protoPackageName}'
 export const ${exportName}Path = \`\${__dirname}/protos/${serviceName}.proto\``
 
                 fs.appendFile('./src/index.ts', content, err => {
@@ -37,7 +52,6 @@ export const ${exportName}Path = \`\${__dirname}/protos/${serviceName}.proto\``
             }
         }
     }
-
     ls('./src/protos').catch(console.error)    
 }
 

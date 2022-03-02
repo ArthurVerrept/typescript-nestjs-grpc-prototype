@@ -2,14 +2,14 @@ import { Logger } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { Transport } from '@nestjs/microservices'
-import { MathServicePath } from 'proto-npm'
+import { MathServicePath, MathServiceName } from 'proto-npm'
 
 const logger = new Logger('Main')
 
 const microserviceOptions = {
   transport: Transport.GRPC,
   options: {
-    package: 'math',
+    package: MathServiceName,
     protoPath: MathServicePath
     // url: 'localhost:50051'
   }
