@@ -18,7 +18,7 @@ async function main() {
                 // look through proto files
                 const data = fs.readFileSync(`./src/protos/${dirent.name}`, {encoding:'utf8', flag:'r'})
                 
-                if(data.includes('package')){
+                if(data.includes('package')) {
                     const str = data.toString()
                     const secondColon = str.indexOf(';') + 1
 
@@ -26,6 +26,8 @@ async function main() {
                         str.indexOf("package ") + 8, 
                         str.indexOf(";", secondColon)
                     ) 
+                } else {
+                    throw new Error('proto file has no package name')
                 }
 
 

@@ -7,3 +7,4 @@ export const MathServicePath = `${__dirname}/protos/mathService.proto`
 export * from './protos/mathServiceTwo'
 export const MathServiceTwoName = 'math2'
 export const MathServiceTwoPath = `${__dirname}/protos/mathServiceTwo.proto`
+
