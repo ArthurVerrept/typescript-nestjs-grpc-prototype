@@ -48,7 +48,7 @@ export const ${exportName}Path = \`\${__dirname}/protos/${serviceName}.proto\``
                 // copy protos to lib file
                 fs.copyFile(`${__dirname}/protos/${serviceName}.proto`, `${outputDirPath}/lib/protos/${serviceName}.proto`, (err) => {
                     if (err) throw err;
-                });
+                })
             }
         }
     }
