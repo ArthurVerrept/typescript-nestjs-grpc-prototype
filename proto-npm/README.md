@@ -4,4 +4,4 @@
 ```
 npm run gen
 ```
-4. use npm-link to get the package into your microservices and gateway.
+4. copy paste the lib folder into your microservices and gateways node_modules, rename and import ready to use!.

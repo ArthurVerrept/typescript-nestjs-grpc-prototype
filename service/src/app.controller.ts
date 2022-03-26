@@ -1,7 +1,7 @@
 import { Metadata } from '@grpc/grpc-js'
 import { Controller, Logger, UseGuards } from '@nestjs/common'
 import { GrpcMethod } from '@nestjs/microservices'
-import { NumberArray, SumOfNumberArray } from '../gen2/src/app'
+import { NumberArray, SumOfNumberArray } from 'proto-npm'
 import { AppService } from './app.service'
 import { GrpcAuthGuard } from './grpcAuthGuard.strategy'
 

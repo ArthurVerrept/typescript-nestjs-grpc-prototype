@@ -3,7 +3,7 @@ import { GetUserTokensDto } from './dto/user.dto'
 import { UserService } from './user.service'
 import { ClientGrpc } from '@nestjs/microservices'
 import { Meta } from 'src/meta.decorator'
-import { MathService, NumberArray } from 'gen2/src/app'
+import { NumberArray, MathService } from 'proto-npm'
 import { Metadata } from '@grpc/grpc-js'
 
 @Controller('user')
