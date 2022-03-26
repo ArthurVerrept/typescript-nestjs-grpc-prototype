@@ -13,4 +13,11 @@ To regenerate/ alter the package, add new protos (if any) to the src/protos file
 $ npm run gen
 ```
 
+## Steps to run:
+1. delete all files from <i>proto-npm/src/protos</i> folder
+2. add <u>your</u> protos into that folder
+3. run: <i>npm run gen</i>
+4. copy paste the generated lib folder to your services and gateways' node_modules
+5. import and use!
+
 ### !!! It is very important that you make sure service names are thought out and consistent between file name and service name !!!
