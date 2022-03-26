@@ -4,13 +4,31 @@ async function main() {
     async function ls(path) {
         const dir = await fs.promises.opendir(path)
         // delete previouse index.ts before regenrating the needed code
-        fs.unlink('./src/index.ts', (err => {
-            if (err) console.log(err);
-            else {
-              console.log("\nDeleted file: index.txt");
-            }
-          })
-        )
+        if(fs.existsSync('./src/index.ts')){
+            fs.unlink('./src/index.ts', (err => {
+                if (err) console.log(err);
+                else {
+                  console.log("\nDeleted file: index.txt");
+                }
+              })
+            )
+        }
+
+        
+        const buildDir = './lib'
+        const protosDir = buildDir + '/protos'
+        if (fs.existsSync(buildDir)){
+            fs.rmSync(buildDir, { recursive: true }, (err) => {
+                if (err) {
+                    throw err;
+                }
+            
+                console.log(`${dir} is deleted!`);
+            });
+            fs.existsSync(buildDir)
+        }
+        fs.mkdirSync(buildDir, () => { return true });
+        fs.mkdirSync(protosDir, () => { return null });
 
         for await (const dirent of dir) {
             if(dirent.name.includes('.proto')){
@@ -19,6 +37,8 @@ async function main() {
                 const data = fs.readFileSync(`./src/protos/${dirent.name}`, {encoding:'utf8', flag:'r'})
                 
                 if(data.includes('package')) {
+                
+
                     const str = data.toString()
                     const secondColon = str.indexOf(';') + 1
 
