@@ -3,7 +3,7 @@ import { GetUserTokensDto } from './dto/user.dto'
 import { UserService } from './user.service'
 import { ClientGrpc } from '@nestjs/microservices'
 import { Meta } from 'src/meta.decorator'
-import { NumberArray, MathService } from 'proto-npm'
+import { NumberArray, MathService, MathServiceName } from 'proto-npm'
 import { Metadata } from '@grpc/grpc-js'
 
 @Controller('user')
@@ -15,7 +15,7 @@ export class UserController implements OnModuleInit  {
     }
 
     constructor(
-        @Inject('math') private client: ClientGrpc,
+        @Inject(MathServiceName) private client: ClientGrpc,
         private userService: UserService
     ) {}
 

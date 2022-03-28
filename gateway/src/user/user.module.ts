@@ -4,17 +4,17 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { JwtModule } from '@nestjs/jwt'
 import { UserService } from './user.service'
 import { ClientsModule, Transport } from '@nestjs/microservices'
-import { join } from 'path'
+import { MathServicePath, MathServiceName } from 'proto-npm'
 
 @Module({
   imports: [
     ClientsModule.register([
       {
-        name: 'math',
+        name: MathServiceName,
         transport: Transport.GRPC,
         options: {
-          package: 'math',
-          protoPath: join(__dirname, '../app.proto')
+          package: MathServiceName,
+          protoPath: MathServicePath
         }
       }
     ]),

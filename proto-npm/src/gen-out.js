@@ -40,12 +40,9 @@ async function main() {
                 
 
                     const str = data.toString()
-                    const secondColon = str.indexOf(';') + 1
+                    const str2 = str.split('package ')[1];
+                    protoPackageName = str2.split(';')[0]
 
-                    protoPackageName = str.substring(
-                        str.indexOf("package ") + 8, 
-                        str.indexOf(";", secondColon)
-                    ) 
                 } else {
                     throw new Error('proto file has no package name')
                 }
