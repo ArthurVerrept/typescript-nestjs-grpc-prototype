@@ -55,7 +55,7 @@ async function main() {
                 const exportName = serviceName.charAt(0).toUpperCase() + serviceName.slice(1)
                 const content = `
 // @ts-ignore 
-export * from './protos/${serviceName}'
+export * from './out/src/protos/${serviceName}'
 export const ${exportName}Name = '${protoPackageName}'
 export const ${exportName}Path = \`\${__dirname}/protos/${serviceName}.proto\``
 
